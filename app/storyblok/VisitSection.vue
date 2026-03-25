@@ -75,7 +75,7 @@ useGsapScope(sectionRef, ({ gsap, ScrollTrigger, scope }) => {
 				</p>
 				<a
 					v-if="blok.booking_button_label"
-					class="bg-primary px-10 py-4 font-label text-sm uppercase tracking-widest text-on-primary transition-opacity hover:opacity-90"
+					class="bg-on-primary px-10 py-4 font-label text-sm uppercase tracking-widest text-tertiary-fixed-dim transition-opacity hover:opacity-90"
 					:href="getLinkHref(blok.booking_button_link)"
 				>
 					{{ blok.booking_button_label }}

@@ -11,7 +11,7 @@ export default {
 				"surface-bright": "#fcf9f3",
 				"outline-variant": "#c6c6ce",
 				"on-secondary-container": "#fffbff",
-				"on-tertiary-fixed": "#261a00",
+				"on-tertiary-fixed": "#FFFFFF",
 				"on-primary": "#ffffff",
 				"inverse-surface": "#31312d",
 				"on-error": "#ffffff",
