@@ -1,24 +1,77 @@
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 const props = defineProps({ blok: Object });
+const sectionRef = ref(null);
 
 const imageUrl = computed(() => props.blok?.image?.filename || "");
 const imageAlt = computed(
 	() => props.blok?.image?.alt || props.blok?.image_alt || props.blok?.title || "Hero image",
 );
+
+useGsapScope(sectionRef, ({ gsap, ScrollTrigger, scope }) => {
+	const media = scope?.querySelector("[data-hero-media]");
+	const overlay = scope?.querySelector("[data-hero-overlay]");
+	const reveals = scope?.querySelectorAll("[data-hero-reveal]");
+
+	if (reveals?.length) {
+		gsap.from(reveals, {
+			y: 48,
+			opacity: 0,
+			duration: 1.2,
+			stagger: 0.12,
+			ease: "power3.out",
+		});
+	}
+
+	if (media) {
+		gsap.fromTo(
+			media,
+			{ scale: 1.08 },
+			{
+				scale: 1,
+				ease: "none",
+				scrollTrigger: {
+					trigger: scope,
+					start: "top top",
+					end: "bottom top",
+					scrub: true,
+				},
+			},
+		);
+	}
+
+	if (overlay) {
+		gsap.fromTo(
+			overlay,
+			{ opacity: 0.78 },
+			{
+				opacity: 0.45,
+				ease: "none",
+				scrollTrigger: {
+					trigger: scope,
+					start: "top top",
+					end: "bottom top",
+					scrub: true,
+				},
+			},
+		);
+	}
+
+	ScrollTrigger.refresh();
+});
 </script>
 
 <template>
-	<section class="hero-section" v-editable="blok">
-		<div class="hero-media" v-if="imageUrl">
+	<section ref="sectionRef" class="hero-section" v-editable="blok">
+		<div class="hero-media" data-hero-media v-if="imageUrl">
 			<img :src="imageUrl" :alt="imageAlt" />
 		</div>
-		<div class="hero-overlay" />
+		<div class="hero-overlay" data-hero-overlay />
 		<div class="hero-content">
-			<h1>{{ blok.title || "Laki Ramen" }}</h1>
-			<p>{{ blok.subtitle || "Bringing the Passion and Flavor of Japan to the World" }}</p>
-			<div class="hero-scroll">
+			<h1 data-hero-reveal>{{ blok.title || "Laki Ramen" }}</h1>
+			<p data-hero-reveal>{{ blok.subtitle || "Bringing the Passion and Flavor of Japan to the World" }}</p>
+			<div class="hero-scroll" data-hero-reveal>
 				<div class="hero-scroll-line" />
 				<span>{{ blok.scroll_label || "Scroll to Explore" }}</span>
 			</div>

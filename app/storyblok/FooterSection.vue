@@ -1,13 +1,37 @@
 <script setup>
+import { ref } from "vue";
+
 defineProps({ blok: Object });
+
+const footerRef = ref(null);
+
+useGsapScope(footerRef, ({ gsap, ScrollTrigger, scope }) => {
+	const columns = scope?.querySelectorAll("[data-footer-column]");
+
+	if (columns?.length) {
+		gsap.from(columns, {
+			y: 32,
+			opacity: 0,
+			duration: 0.85,
+			stagger: 0.12,
+			ease: "power2.out",
+			scrollTrigger: {
+				trigger: scope,
+				start: "top 88%",
+			},
+		});
+	}
+
+	ScrollTrigger.refresh();
+});
 </script>
 
 <template>
-	<footer class="bg-[#FCF9F3] px-8 py-20 dark:bg-stone-950" v-editable="blok">
+	<footer ref="footerRef" class="bg-[#FCF9F3] px-8 py-20 dark:bg-stone-950" v-editable="blok">
 		<div
 			class="mx-auto grid max-w-screen-2xl grid-cols-1 gap-12 border-t border-outline-variant/20 pt-20 md:grid-cols-4"
 		>
-			<div class="col-span-1 md:col-span-1">
+			<div class="col-span-1 md:col-span-1" data-footer-column>
 				<a class="font-headline text-3xl italic text-primary" href="/">
 					{{ blok.brand || "Laki Ramen" }}
 				</a>
@@ -19,7 +43,7 @@ defineProps({ blok: Object });
 				</p>
 			</div>
 
-			<div class="space-y-6">
+			<div class="space-y-6" data-footer-column>
 				<h4 class="font-body text-sm font-bold uppercase tracking-widest text-primary">
 					{{ blok.discover_title || "Discover" }}
 				</h4>
@@ -32,7 +56,7 @@ defineProps({ blok: Object });
 				</nav>
 			</div>
 
-			<div class="space-y-6">
+			<div class="space-y-6" data-footer-column>
 				<h4 class="font-body text-sm font-bold uppercase tracking-widest text-primary">
 					{{ blok.connect_title || "Connect" }}
 				</h4>
@@ -45,7 +69,7 @@ defineProps({ blok: Object });
 				</nav>
 			</div>
 
-			<div class="space-y-6">
+			<div class="space-y-6" data-footer-column>
 				<h4 class="font-body text-sm font-bold uppercase tracking-widest text-primary">
 					{{ blok.inquiries_title || "Inquiries" }}
 				</h4>
