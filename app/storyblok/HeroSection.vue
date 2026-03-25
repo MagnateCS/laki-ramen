@@ -63,99 +63,59 @@ useGsapScope(sectionRef, ({ gsap, ScrollTrigger, scope }) => {
 </script>
 
 <template>
-	<section ref="sectionRef" class="hero-section" v-editable="blok">
-		<div class="hero-media" data-hero-media v-if="imageUrl">
-			<img :src="imageUrl" :alt="imageAlt" />
+	<header
+		ref="sectionRef"
+		v-editable="blok"
+		class="relative flex min-h-[max(44rem,88vh)] items-center justify-center overflow-hidden bg-[#1b1611] px-6 py-16"
+	>
+		<div
+			v-if="imageUrl"
+			data-hero-media
+			class="absolute inset-0 z-0 h-full w-full"
+		>
+			<img
+				:src="imageUrl"
+				:alt="imageAlt"
+				class="h-full w-full object-cover"
+			/>
 		</div>
-		<div class="hero-overlay" data-hero-overlay />
-		<div class="hero-content">
-			<h1 data-hero-reveal>{{ blok.title || "Laki Ramen" }}</h1>
-			<p data-hero-reveal>{{ blok.subtitle || "Bringing the Passion and Flavor of Japan to the World" }}</p>
-			<div class="hero-scroll" data-hero-reveal>
-				<div class="hero-scroll-line" />
-				<span>{{ blok.scroll_label || "Scroll to Explore" }}</span>
+
+		<div
+			data-hero-overlay
+			class="absolute inset-0 h-full w-full"
+			style="
+				background:
+					linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.46)),
+					radial-gradient(circle at center, rgba(181, 26, 30, 0.08), transparent 52%);
+			"
+		/>
+
+		<div class="relative z-10 max-w-[60rem] text-center text-white">
+			<h1
+				data-hero-reveal
+				class="m-0 font-headline text-[clamp(4rem,10vw,8rem)] italic font-medium leading-[0.94] tracking-[-0.04em]"
+			>
+				{{ blok.title || "Laki Ramen" }}
+			</h1>
+
+			<p
+				data-hero-reveal
+				class="mx-auto mt-6 max-w-[42rem] text-[clamp(1rem,2vw,1.45rem)] font-light uppercase tracking-[0.36em] text-white/90"
+			>
+				{{
+					blok.subtitle || "Bringing the Passion and Flavor of Japan to the World"
+				}}
+			</p>
+
+			<div
+				data-hero-reveal
+				class="mt-12 flex flex-col items-center"
+			>
+				<div class="h-[5.5rem] w-px bg-white/40" />
+				<span class="mt-4 text-[0.68rem] uppercase tracking-[0.3em] text-white/60">
+					{{ blok.scroll_label || "Scroll to Explore" }}
+				</span>
 			</div>
 		</div>
-	</section>
+	</header>
 </template>
-
-<style scoped>
-.hero-section {
-	position: relative;
-	display: flex;
-	min-height: max(44rem, 88vh);
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	padding: 4rem 1.5rem;
-	background: #1b1611;
-}
-
-.hero-media,
-.hero-media img,
-.hero-overlay {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-}
-
-.hero-media img {
-	object-fit: cover;
-}
-
-.hero-overlay {
-	background:
-		linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.46)),
-		radial-gradient(circle at center, rgba(181, 26, 30, 0.08), transparent 52%);
-}
-
-.hero-content {
-	position: relative;
-	z-index: 1;
-	max-width: 60rem;
-	text-align: center;
-	color: white;
-}
-
-.hero-content h1 {
-	margin: 0;
-	font-family: "Newsreader", serif;
-	font-size: clamp(4rem, 10vw, 8rem);
-	font-style: italic;
-	font-weight: 500;
-	line-height: 0.94;
-	letter-spacing: -0.04em;
-}
-
-.hero-content p {
-	margin: 1.5rem auto 0;
-	max-width: 42rem;
-	font-size: clamp(1rem, 2vw, 1.45rem);
-	font-weight: 300;
-	letter-spacing: 0.36em;
-	text-transform: uppercase;
-	color: rgba(255, 255, 255, 0.88);
-}
-
-.hero-scroll {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 3rem;
-}
-
-.hero-scroll-line {
-	width: 1px;
-	height: 5.5rem;
-	background: rgba(255, 255, 255, 0.38);
-}
-
-.hero-scroll span {
-	margin-top: 1rem;
-	font-size: 0.68rem;
-	letter-spacing: 0.3em;
-	text-transform: uppercase;
-	color: rgba(255, 255, 255, 0.64);
-}
-</style>

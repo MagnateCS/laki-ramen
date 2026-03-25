@@ -29,7 +29,7 @@ useGsapScope(sectionRef, ({ gsap, scope }) => {
 				ease: "power3.out",
 				scrollTrigger: {
 					trigger: scope,
-					start: "top 76%",
+					start: "20% 76%",
 					once: true,
 				},
 			}
@@ -51,7 +51,7 @@ useGsapScope(sectionRef, ({ gsap, scope }) => {
 				ease: "power2.out",
 				scrollTrigger: {
 					trigger: providersWrap,
-					start: "top 88%",
+					start: "30% 88%",
 					once: true,
 				},
 			}

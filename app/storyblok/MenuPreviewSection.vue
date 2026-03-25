@@ -26,7 +26,7 @@ useGsapScope(sectionRef, ({ gsap, ScrollTrigger, scope }) => {
 			ease: "power3.out",
 			scrollTrigger: {
 				trigger: header,
-				start: "top 82%",
+				start: "20% 82%",
 			},
 		});
 	}
@@ -40,7 +40,7 @@ useGsapScope(sectionRef, ({ gsap, ScrollTrigger, scope }) => {
 			ease: "power3.out",
 			scrollTrigger: {
 				trigger: scope,
-				start: "top 72%",
+				start: "20% 72%",
 			},
 		});
 	}

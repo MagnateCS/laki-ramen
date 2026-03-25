@@ -25,7 +25,7 @@ export default {
 				"on-tertiary-container": "#a87d00",
 				"on-primary-container": "#7b83a1",
 				"on-secondary-fixed": "#410003",
-				"tertiary-fixed-dim": "#f6be39",
+				"tertiary-fixed-dim": "#1e2188",
 				"on-tertiary-fixed-variant": "#5c4300",
 				"on-primary-fixed-variant": "#3e4661",
 				tertiary: "#000000",
