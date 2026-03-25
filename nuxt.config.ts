@@ -22,6 +22,16 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Laki Ramen",
+      meta: [
+        {
+          property: "og:image",
+          content: "https://assets.magnatecs.com/laki-ramen/Laki-Ramen-OG.png",
+        },
+        {
+          name: "twitter:image",
+          content: "https://assets.magnatecs.com/laki-ramen/Laki-Ramen-OG.png",
+        },
+      ],
       link: [
         {
           rel: "preconnect",
